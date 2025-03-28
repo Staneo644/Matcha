@@ -11,6 +11,9 @@ up:
 down:
 	docker compose -f $(NAME) down
 
+downv:
+	docker compose -f $(NAME) down -v
+
 clean: down
 	docker system prune -af
 	docker volume prune -f
