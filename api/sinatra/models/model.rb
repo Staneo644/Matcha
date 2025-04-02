@@ -65,11 +65,31 @@ class Model
         results.map { |result| new(result) }
     end
 
-    def self.where(column, value)
-        query = "SELECT * FROM #{table_name} WHERE #{column} = '#{DB.escape(value)}'"
+    def self.where(conditions = {})
+        where_clause = conditions.map { |column, value| "#{column} = '#{DB.escape(value)}'" }.join(" AND ")
+        query = "SELECT * FROM #{table_name} WHERE #{where_clause}"
         results = DB.query(query)
         results.map { |result| new(result) }
     end
+
+    def self.where_one(conditions = {})
+        where_clause = conditions.map { |column, value| "#{column} = '#{DB.escape(value)}'" }.join(" AND ")
+        query = "SELECT * FROM #{table_name} WHERE #{where_clause}"
+        result = DB.query(query).first
+        return nil if result.nil?
+        new(result)
+    end
+
+    def self.find_by(conditions = {})
+        where_clause = conditions.map { |column, value| "#{column} = '#{DB.escape(value)}'" }.join(" AND ")
+        query = "SELECT * FROM #{table_name} WHERE #{where_clause} LIMIT 1"
+        result = DB.query(query).first
+        return nil if result.nil?
+        new(result)
+    end
+
+    private
+
 
     def self.table_name
         raise NotImplementedError, "La méthode table_name doit être définie dans la sous-classe"

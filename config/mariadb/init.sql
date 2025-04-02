@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     pseudo VARCHAR(100),
-    age INT,
+    birthday DATE,
     gender ENUM('M', 'W', 'O') DEFAULT 'O',
     orientation ENUM('M', 'W', 'O') DEFAULT 'O',
     bio TEXT,

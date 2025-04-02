@@ -2,14 +2,14 @@ require_relative './model'
 require 'bcrypt'
 
 class User < Model
-  attr_accessor :email, :password_hash, :pseudo, :age, :gender, :orientation, :bio, :want_location, :location_latitude, :location_longitude
+  attr_accessor :email, :password_hash, :pseudo, :birthday, :gender, :orientation, :bio, :want_location, :location_latitude, :location_longitude
 
   def self.table_name
     'users'
   end
 
   def self.columns
-    ['email', 'password_hash', 'pseudo', 'age', 'gender', 'orientation', 'bio', 'want_location', 'location_latitude', 'location_longitude']
+    ['email', 'password_hash', 'pseudo', 'birthday', 'gender', 'orientation', 'bio', 'want_location', 'location_latitude', 'location_longitude']
   end
 
   def self.authenticate(email, password)

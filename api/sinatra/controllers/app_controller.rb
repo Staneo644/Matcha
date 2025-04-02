@@ -50,7 +50,7 @@ post '/register' do
       email: params.fetch(:email), 
       password_hash: password_hash, 
       pseudo: params.fetch(:pseudo), 
-      age: params.fetch(:age),
+      birthday: params.fetch(:birthday),
       gender: params.fetch(:gender),
       orientation: params.fetch(:orientation),
       bio: params.fetch(:bio),
@@ -82,6 +82,7 @@ post '/login' do
       session[:user_id] = user.id
       payload = { user_id: user.id, exp: Time.now.to_i + 36000 } # Expiration dans 1h
       token = JWT.encode(payload, SECRET_KEY, 'HS256')
+      status 200
       { token: token }.to_json
 
     else
