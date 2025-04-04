@@ -28,7 +28,7 @@ class Model
     def insert_into_db
         columns = self.class.columns.join(', ')
         values = self.class.columns.map do |column|
-            value = send(column)
+            value = send(column).to_s
             value.nil? ? "''" : "'#{DB.escape(value)}'"
         end.join(", ")
         
@@ -46,7 +46,7 @@ class Model
     end
 
     def update_in_db
-        set_clause = self.class.columns.map { |column| "#{column} = '#{DB.escape(send(column))}'" }.join(", ")
+        set_clause = self.class.columns.map { |column| "#{column} = '#{DB.escape(send(column).to_s)}'" }.join(", ")
     
         query = "UPDATE #{self.class.table_name} SET #{set_clause} WHERE id = #{@id}"
         DB.query(query)

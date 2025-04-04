@@ -1,3 +1,3 @@
 require 'securerandom'
 
-SECRET_KEY = SecureRandom.hex(32)
+$SECRET_KEY = SecureRandom.hex(32)

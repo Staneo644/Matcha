@@ -2,14 +2,14 @@ require '../database'
 require_relative './model'
 
 class Connection < Model
-  attr_accessor :user1_id, :user2_id
+  attr_accessor :user1_id, :user2_id, :number_message_unread_user1, :number_message_unread_user2
 
   def self.table_name
     'connections'
   end
 
   def self.columns
-    ['user1_id', 'user2_id']
+    ['user1_id', 'user2_id', 'number_message_unread_user1', 'number_message_unread_user2']
   end
 
   def self.between(user1_id, user2_id)

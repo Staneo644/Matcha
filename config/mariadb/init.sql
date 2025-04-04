@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS pictures (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    url VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    data LONGBLOB NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
@@ -91,3 +92,22 @@ VALUES
     ('anime'),
     ('série'),
     ('cuisine');
+
+INSERT IGNORE INTO users 
+(email, password_hash, pseudo, birthday, gender, orientation, bio, want_location, location_latitude, location_longitude)
+VALUES
+    ('A@example.com', '$2a$12$0jVuVGwMnjOCh4BvKsQB9.HbiKvMh93FsZ6RJyuuz1jGadTVxS2ba', 'A_user', '1990-01-01', 'M', 'O', 'This is a test user.', 1, 48.8566, 2.3522),
+    ('B@example.com', '$2a$12$0jVuVGwMnjOCh4BvKsQB9.HbiKvMh93FsZ6RJyuuz1jGadTVxS2ba', 'B_user', '1992-01-01', 'W', 'M', 'This is a test user.', 1, 45.7264, 4.8801),
+    ('C@example.com', '$2a$12$0jVuVGwMnjOCh4BvKsQB9.HbiKvMh93FsZ6RJyuuz1jGadTVxS2ba', 'C_user', '1996-01-01', 'O', 'O', 'This is a test user.', 1, 46.2045, 6.0467);
+
+INSERT IGNORE INTO user_tags (user_id, tag_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 1),
+    (2, 2),
+    (2, 6),
+    (3, 1),
+    (3, 3),
+    (3, 9);

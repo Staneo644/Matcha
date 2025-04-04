@@ -14,7 +14,7 @@ def authenticate!
   return halt 401, { error: 'Token missing' }.to_json unless token
 
   begin
-    decoded_token = JWT.decode(token, SECRET_KEY, true, { algorithm: 'HS256' })
+    decoded_token = JWT.decode(token, $SECRET_KEY, true, { algorithm: 'HS256' })
     @current_user = decoded_token[0]['user_id'] # Récupération de l'utilisateur
   rescue JWT::DecodeError
     halt 401, { error: 'Invalid token' }.to_json
@@ -81,7 +81,7 @@ post '/login' do
     if user
       session[:user_id] = user.id
       payload = { user_id: user.id, exp: Time.now.to_i + 36000 } # Expiration dans 1h
-      token = JWT.encode(payload, SECRET_KEY, 'HS256')
+      token = JWT.encode(payload, $SECRET_KEY, 'HS256')
       status 200
       { token: token }.to_json
 
