@@ -1,77 +1,148 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Prevent scrollbars */
-  position: relative; /* Enable layering */
+	margin: 0;
+	font-family: Arial, sans-serif;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	/* Prevent scrollbars */
+	position: relative;
+	/* Enable layering */
 }
 
 .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('./assets/match.webp') no-repeat center center fixed; /* Absolute path to public folder */
-  background-size: cover;
-  filter: blur(8px); /* Apply blur effect to the background */
-  -webkit-filter: blur(8px); /* For Safari */
-  z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('./assets/match.webp') no-repeat center center fixed;
+	/* Absolute path to public folder */
+	background-size: cover;
+	filter: blur(8px);
+	/* Apply blur effect to the background */
+	-webkit-filter: blur(8px);
+	/* For Safari */
+	z-index: -1;
 }
 
 .login-container {
-  background: #2c2c2c; /* Dark gray background */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for contrast */
-  text-align: center;
-  width: 300px;
-  z-index: 1; /* Ensure it sits above the blurred background */
+	background: #2c2c2c;
+	/* Dark gray background */
+	padding: 2rem;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	/* Stronger shadow for contrast */
+	text-align: center;
+	width: 300px;
+	z-index: 1;
+	/* Ensure it sits above the blurred background */
 }
 
 .login-container h1 {
-  margin-bottom: 1.5rem;
-  color: #ff6f61; /* Bright accent color for the title */
+	margin-bottom: 1.5rem;
+	color: #ff6f61;
+	/* Bright accent color for the title */
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	/* Stack the inputs vertically */
+	align-items: center;
+	/* Center the inputs horizontally */
 }
 
 .login-form input {
-  width: 100%;
-  padding: 0.8rem;
-  margin: 0.5rem 0;
-  border: 1px solid #444; /* Darker border */
-  border-radius: 5px;
-  font-size: 1rem;
-  background: #444; /* Darker input background */
-  color: #fff; /* White text for contrast */
+	width: 80%;
+	/* Adjust the width to make it smaller */
+	padding: 0.8rem;
+	margin: 0.5rem 0;
+	border: 1px solid #444;
+	/* Darker border */
+	border-radius: 5px;
+	font-size: 1rem;
+	background: #444;
+	/* Darker input background */
+	color: #fff;
+	/* White text for contrast */
+	text-align: center;
+	/* Center the placeholder and input text */
 }
 
 .login-form input::placeholder {
-  color: #aaa; /* Lighter gray for placeholder text */
+	color: #aaa;
+	/* Lighter gray for placeholder text */
 }
 
 .login-form button {
-  width: 50%; /* Make the button smaller */
-  padding: 0.5rem; /* Reduce padding */
-  background: #ff6f61; /* Bright accent color for the button */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.9rem; /* Slightly smaller font size */
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin: 0 auto; /* Center the button horizontally */
-  display: block; /* Ensure the button respects the margin */
+	width: 50%;
+	/* Keep the button smaller */
+	padding: 0.8rem;
+	/* Adjust padding for a larger button */
+	background: #ff6f61;
+	/* Bright accent color for the button */
+	color: white;
+	border: none;
+	border-radius: 25px;
+	/* Make the button round */
+	font-size: 1rem;
+	/* Slightly larger font size */
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.2s ease;
+	/* Add smooth hover effects */
+	margin: 0 auto;
+	/* Center the button horizontally */
+	display: block;
+	/* Ensure the button respects the margin */
 }
 
 .login-form button:hover {
-  background: #e65c55; /* Slightly darker hover effect */
+	background: #5ce655;
+	/* Slightly darker hover effect */
+	transform: scale(1.05);
+	/* Slightly enlarge on hover */
+}
+
+.login-form button:active {
+	transform: scale(0.95);
+	/* Slightly shrink on click */
 }
 
 .message {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: #ff6f61; /* Bright accent color for messages */
+	margin-top: 1rem;
+	font-size: 1rem;
+	color: #ff6f61;
+	/* Bright accent color for messages */
+}
+
+.create-account-message {
+  display: flex;
+  align-items: center; /* Align text and button vertically */
+  justify-content: flex-start; /* Align content to the left */
+  font-size: 0.9rem; /* Adjust font size if needed */
+  margin-top: 2rem; /* Increase spacing above the message to lower the line */
+  color: #fff; /* Ensure text color matches your design */
+}
+
+.create-account-button {
+  margin-left: 0.5rem; /* Add spacing between text and button */
+  padding: 0.3rem 0.8rem; /* Adjust padding for a smaller button */
+  background: #301eff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 25px; /* Make the button fully round */
+  font-size: 0.8rem; /* Match font size with the text */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.3s ease, transform 0.2s ease; /* Add hover effects */
+}
+
+.create-account-button:hover {
+  background: #9187ff; /* Slightly darker color on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.create-account-button:active {
+  transform: scale(0.95); /* Slightly shrink on click */
 }

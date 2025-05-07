@@ -1,0 +1,83 @@
+@import url('./App.css');
+
+.create-user-container {
+	background: #2c2c2c;
+	padding: 2rem;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	width: 300px;
+	margin: 2rem auto;
+}
+
+.create-user-container h1 {
+	margin-bottom: 1.5rem;
+	color: #ff6f61;
+}
+
+.create-user-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.create-user-form input {
+	width: 80%;
+	padding: 0.8rem;
+	margin: 0.5rem 0;
+	border: 1px solid #444;
+	border-radius: 5px;
+	font-size: 1rem;
+	background: #444;
+	color: #fff;
+	text-align: center;
+}
+
+.create-user-form input::placeholder {
+	color: #aaa;
+}
+
+.create-user-form button {
+	width: 50%;
+	padding: 0.8rem;
+	background: #ff6f61;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.create-user-form button:hover {
+	background: #5ce655;
+	transform: scale(1.05);
+}
+
+.create-user-form button:active {
+	transform: scale(0.95);
+}
+
+.back-to-home-button {
+  margin-top: 2rem; /* Increase spacing to lower the button */
+  padding: 0.3rem 0.8rem; /* Match padding with the create-account-button */
+  background: #e800f8; /* Match the background color */
+  color: white; /* Match the text color */
+  border: none; /* Remove border */
+  border-radius: 25px; /* Make the button fully round */
+  font-size: 0.8rem; /* Match font size with the create-account-button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.3s ease, transform 0.2s ease; /* Add hover effects */
+  display: block; /* Ensure the button is treated as a block element */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+}
+
+.back-to-home-button:hover {
+  background: #f57bfe; /* Match the background color */ /* Match hover color with the create-account-button */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.back-to-home-button:active {
+  transform: scale(0.95); /* Slightly shrink on click */
+}

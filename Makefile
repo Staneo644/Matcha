@@ -20,7 +20,7 @@ clean: down
 	sudo docker system prune -af
 	sudo docker volume prune -f
 
-start:
+start: init
 	@cd frontend && \
 	npm start
 
@@ -28,6 +28,10 @@ stop:
 	@cd frontend && \
 	npm stop
 
+init:
+	@cd frontend && \
+	npm install
+
 re: clean all
 
-.PHONY: all build up down downv clean start stop re
+.PHONY: all build up down downv clean start stop init re
