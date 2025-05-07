@@ -21,56 +21,6 @@ def authenticate!
   end
 end
 
-get '/' do
-  puts session[:user_id]
-end
-
-get '/register' do
-  erb :register
-end
-
-post '/register' do
-  begin
-    password = params.fetch(:password)
-    if password.length < 8 || password.length > 72 || password !~ /[a-z]/ || password !~ /[A-Z]/ || password !~ /[0-9]/
-      raise KeyError, "password"
-      status 400
-      @error = "Password must be between 8 and 72 characters and contain at least one lowercase letter, one uppercase letter, and one digit."
-    end
-    password_hash = BCrypt::Password.create(password)
-
-    location_results = Geocoder.search(params.fetch(:location))
-    if location_results.empty? || location_results.first.nil?
-      status 400
-      @error = "Invalid location."
-      return
-    end
-    location = location_results.first
-    user = User.new(
-      email: params.fetch(:email), 
-      password_hash: password_hash, 
-      pseudo: params.fetch(:pseudo), 
-      birthday: params.fetch(:birthday),
-      gender: params.fetch(:gender),
-      orientation: params.fetch(:orientation),
-      bio: params.fetch(:bio),
-      want_location: params.fetch(:want_location),
-      location_latitude: location.latitude.to_s,
-      location_longitude: location.longitude.to_s
-    )
-    if user.save
-      session[:user_id] = user.id
-      redirect '/'
-    else
-      status 400
-      @error = "Registration failed."
-    end
-  rescue KeyError => e
-    status 400
-    @error = "Missing parameter: #{e.message}"
-  end
-end
-
 get '/login' do
   erb :login
 end
@@ -99,3 +49,4 @@ get '/logout' do
   session.clear
   redirect '/login'
 end
+

@@ -47,3 +47,30 @@ post '/user_tags' do
     { error: e.message }.to_json
   end
 end
+
+delete '/user_tags' do
+  authenticate!
+  begin
+    user_tag = User_Tag.find(params[:tag_id])
+    if user_tag.nil?
+      status 404
+      { error: 'User tag not found' }.to_json
+      return
+    end
+    if user_tag.user_id.to_s != @current_user.to_s
+      status 403
+      { error: 'You are not authorized to delete this user tag' }.to_json
+      return
+    end
+    if user_tag.destroy
+      status 200
+      { message: 'User tag deleted successfully' }.to_json
+    else
+      status 422
+      { error: 'Unable to delete user tag' }.to_json
+    end
+  rescue StandardError => e
+    status 422
+    { error: e.message }.to_json
+  end
+end

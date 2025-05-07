@@ -7,10 +7,10 @@ require './controllers/connection'
 require './controllers/tags'
 require './controllers/user_tags'
 require './controllers/search'
+require './controllers/test'
+require './controllers/user'
 require './controllers/websocket'
 
 
 
-get '/' do
-  'Hello, Sinatra with MariaDB in Docker!'
-end
+

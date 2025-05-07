@@ -40,7 +40,7 @@ post '/message' do
       other_user = connection.user1_id
     end
     $clients[other_user].send(
-      {type: 'message', message: {sender_id: @current_user, body: body, connection_id: connection.id}}.to_json
+      {type: 'message', message: {sender_id: @current_user, sender_pseudo: current_user.pseudo, body: body, connection_id: connection.id}}.to_json
      ) if $clients[other_user]
 
     { message: 'Message sent successfully' }.to_json

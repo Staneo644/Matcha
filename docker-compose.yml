@@ -22,16 +22,15 @@ services:
   # frontend:
   #   build:
   #     context: ./frontend
-  #     dockerfile: Dockerfile
   #   container_name: frontend
   #   volumes:
   #     - ./frontend:/app
   #   ports:
   #     - "8080:80"
   #   depends_on:
-  #     - rails_app
+  #     - api
   #   environment:
-  #     - REACT_APP_API_URL=http://rails_app:3000
+  #     - REACT_APP_API_URL=http://rails_app:8080
 
 # Nginx is mute just to optimise in dev
   # nginx:

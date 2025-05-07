@@ -32,7 +32,7 @@ get '/pictures' do
 end
 
 post '/pictures' do
-  # authenticate!
+  authenticate!
   begin
     puts params.inspect
     puts params['image'].inspect
