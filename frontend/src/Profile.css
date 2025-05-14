@@ -1,0 +1,154 @@
+@import url('./App.css');
+
+.profile-container {
+  background: #2c2c2c;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 350px;
+  margin: 2rem auto;
+  color: #fff;
+}
+
+.profile-container h2 {
+  margin-bottom: 1.5rem;
+  color: #ff6f61;
+}
+
+.profile-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-container label {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1rem;
+}
+
+.profile-container input,
+.profile-container select,
+.profile-container textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #444;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.profile-container textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.profile-container input[type="file"] {
+  background: none;
+  color: #fff;
+  border: none;
+  padding: 0;
+}
+
+.profile-pictures {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.profile-pic-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-pic-thumb img {
+  border-radius: 50%;
+  border: 2px solid transparent;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.profile-pic-thumb img[style*="2px solid #ff6f61"] {
+  border: 2px solid #ff6f61 !important;
+}
+
+.profile-pic-thumb span {
+  font-size: 0.7rem;
+  color: #ff6f61;
+  margin-top: 0.2rem;
+}
+
+.selected-tag {
+  background: #301eff;
+  color: #fff;
+  border-radius: 25px;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  margin: 0.2rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.selected-tag:hover {
+  background: #9187ff;
+  transform: scale(1.05);
+}
+
+.profile-container button[type="button"]:not(.selected-tag),
+.profile-container button[type="submit"] {
+  background: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.profile-container button[type="button"]:not(.selected-tag):hover,
+.profile-container button[type="submit"]:hover {
+  background: #5ce655;
+  transform: scale(1.05);
+}
+
+.profile-container button[type="button"]:not(.selected-tag):active,
+.profile-container button[type="submit"]:active {
+  transform: scale(0.95);
+}
+
+.profile-container .message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ff6f61;
+}
+
+.profile-extra {
+  margin-top: 2rem;
+  text-align: left;
+  color: #fff;
+}
+
+.profile-extra h3 {
+  color: #ff6f61;
+  margin-bottom: 0.5rem;
+}
+
+.profile-extra strong {
+  color: #301eff;
+}

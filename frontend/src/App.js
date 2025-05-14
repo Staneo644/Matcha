@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import CreateUser from './CreateUser'; // Import the CreateUser component
+import Profile from './Profile';
+
+
+// // Simple Dashboard component for demonstration
+// function Dashboard() {
+//     return (
+//         <div className="dashboard-container">
+//             <h1>Welcome to your Dashboard!</h1>
+//             <p>You are now logged in.</p>
+//         </div>
+//     );
+// }
 
 function App() {
 	const [email, setEmail] = useState('');
@@ -40,6 +52,7 @@ function App() {
 			.then((data) => {
 				if (data.success) {
 					setMessage('Login successful!');
+					navigate('/dashboard'); // Redirect to dashboard or your target page
 				} else {
 					setMessage('Invalid credentials!');
 				}
@@ -63,7 +76,7 @@ function App() {
 					<button type="submit">Log In</button>
 				</form>
 				{message && <p className="message">{message}</p>}
-				<p className="create-account-message">
+				<p className="create-account-message">ashboard 
 					Don't have an account?
 				<button className="create-account-button" onClick={() => navigate('/create-user')}>
 					Create an Account
@@ -80,6 +93,7 @@ export default function AppWrapper() {
 			<Routes>
 				<Route path="/" element={<App />} />
 				<Route path="/create-user" element={<CreateUser />} />
+				<Route path="/dashboard" element={<Profile />} />
 			</Routes>
 		</Router>
 	);
