@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import './App.css';
 import CreateUser from './CreateUser'; // Import the CreateUser component
 import Profile from './Profile';
-
+import About from './About'; // Add this import
 
 // // Simple Dashboard component for demonstration
 // function Dashboard() {
@@ -43,7 +43,7 @@ function App() {
 		}
 
 		// Send sanitized data to the backend
-		fetch('http://localhost:4567/', {
+		fetch('http://localhost:4567/login', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ email, password }),
@@ -52,6 +52,7 @@ function App() {
 			.then((data) => {
 				if (data.success) {
 					setMessage('Login successful!');
+          ///call to backend to get user data
 					navigate('/dashboard'); // Redirect to dashboard or your target page
 				} else {
 					setMessage('Invalid credentials!');
@@ -76,7 +77,7 @@ function App() {
 					<button type="submit">Log In</button>
 				</form>
 				{message && <p className="message">{message}</p>}
-				<p className="create-account-message">ashboard 
+				<p className="create-account-message">
 					Don't have an account?
 				<button className="create-account-button" onClick={() => navigate('/create-user')}>
 					Create an Account
@@ -88,13 +89,14 @@ function App() {
 }
 
 export default function AppWrapper() {
-	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<App />} />
-				<Route path="/create-user" element={<CreateUser />} />
-				<Route path="/dashboard" element={<Profile />} />
-			</Routes>
-		</Router>
-	);
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/create-user" element={<CreateUser />} />
+                <Route path="/dashboard" element={<Profile />} />
+                <Route path="/about" element={<About />} />
+            </Routes>
+        </Router>
+    );
 }
