@@ -20,24 +20,27 @@ function App() {
 			return;
 		}
 
-		// Email format validation
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		if (!emailRegex.test(email)) {
-			setMessage('Please enter a valid email address.');
-			return;
-		}
+		// // Email format validation
+		// const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		// if (!emailRegex.test(email)) {
+		// 	setMessage('Please enter a valid email address.');
+		// 	return;
+		// }
 
 		// Password length validation
-		if (password.length < 8) {
-			setMessage('Password must be at least 8 characters long.');
-			return;
-		}
+		// if (password.length < 8) {
+		// 	setMessage('Password must be at least 8 characters long.');
+		// 	return;
+		// }
 
 		// Send sanitized data to the backend
 		fetch('http://localhost:4567/login', {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ email, password }),
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: new URLSearchParams({
+				email: email,
+				password: password,
+			}).toString(),
 		})
 			.then((response) => response.json())
 			.then((data) => {
@@ -63,8 +66,8 @@ function App() {
 			<div className="login-container">
 				<h1>Welcome to Matcha</h1>
 				<form className="login-form" onSubmit={handleLogin}>
-					<input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-					<input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+					<input  placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+					<input  placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
 					<button type="submit">Log In</button>
 				</form>
 				{message && <p className="message">{message}</p>}
