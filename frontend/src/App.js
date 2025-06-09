@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
-import CreateUser from './CreateUser'; // Import the CreateUser component
+import CreateUser from './CreateUser';
 import Profile from './Profile';
-import About from './About'; // Add this import
-
-// // Simple Dashboard component for demonstration
-// function Dashboard() {
-//     return (
-//         <div className="dashboard-container">
-//             <h1>Welcome to your Dashboard!</h1>
-//             <p>You are now logged in.</p>
-//         </div>
-//     );
-// }
+import About from './About';
+import Browse from './Browse'; // Add this import
 
 function App() {
 	const [email, setEmail] = useState('');
@@ -96,6 +87,7 @@ export default function AppWrapper() {
                 <Route path="/create-user" element={<CreateUser />} />
                 <Route path="/dashboard" element={<Profile />} />
                 <Route path="/about" element={<About />} />
+               <Route path="/browse" element={<Browse />} />
             </Routes>
         </Router>
     );
