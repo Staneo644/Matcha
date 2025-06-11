@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import CreateUser from './CreateUser';
-import Profile from './Profile';
-import About from './About';
-import Browse from './Browse'; // Add this import
+// import Profile from './Profile';
+// import About from './About';
+// import Browse from './Browse'; // Add this import
 
 function App() {
 	const [email, setEmail] = useState('');
@@ -88,9 +88,9 @@ export default function AppWrapper() {
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/create-user" element={<CreateUser />} />
-                <Route path="/dashboard" element={<Profile />} />
+                {/* <Route path="/dashboard" element={<Profile />} />
                 <Route path="/about" element={<About />} />
-               <Route path="/browse" element={<Browse />} />
+               <Route path="/browse" element={<Browse />} /> */}
             </Routes>
         </Router>
     );
