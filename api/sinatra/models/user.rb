@@ -26,6 +26,9 @@ class User < Model
 
   def self.authenticate(email, password)
     res = DB.query("SELECT * FROM users WHERE email = '#{DB.escape(email)}' LIMIT 1").first
+    if res.nil?
+      return nil
+    end
     BCrypt::Password.new(res['password_hash']) == password ? User.new(res) : nil
   end
 end

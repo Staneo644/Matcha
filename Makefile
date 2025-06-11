@@ -6,12 +6,10 @@ build:
 	sudo docker compose -f $(NAME) build
 
 up:
-	sudo docker compose -f $(NAME) up -d && \
-	make start
+	sudo docker compose -f $(NAME) up -d
 
 down:
-	sudo docker compose -f $(NAME) down  && \
-	make stop
+	sudo docker compose -f $(NAME) down
 
 downv:
 	sudo docker compose -f $(NAME) down -v
