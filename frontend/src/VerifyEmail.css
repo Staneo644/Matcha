@@ -1,0 +1,65 @@
+@import url('./App.css');
+
+.verify-container {
+  background: #2c2c2c;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 350px;
+  margin: 2rem auto;
+  color: #fff;
+}
+
+.verify-container h1 {
+  margin-bottom: 1.5rem;
+  color: #ff6f61;
+}
+
+.verify-message {
+  margin: 1.5rem 0;
+}
+
+.verify-message p {
+  margin: 0.5rem 0;
+}
+
+.verify-message.success {
+  color: #4caf50;
+}
+
+.verify-message.error {
+  color: #f44336;
+}
+
+.verify-container button {
+  background: #301eff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.verify-container button:hover {
+  background: #9187ff;
+  transform: scale(1.05);
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #301eff;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 1rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

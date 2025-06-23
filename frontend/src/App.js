@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import './App.css';
 import CreateUser from './CreateUser';
-// import Profile from './Profile';
-// import About from './About';
-// import Browse from './Browse'; // Add this import
+import Profile from './Profile';
+import Dashboard from './Dashboard';
+import Browse from './Browse';
+import UserProfile from './UserProfile';
+import Chat from './Chat';
+import Notifications from './Notifications';
+import VerifyEmail from './VerifyEmail';
+import ResetPassword from './ResetPassword';
+import ProtectedRoute from './ProtectedRoute';
 
-function App() {
+function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [message, setMessage] = useState('');
+	const navigate = useNavigate();
 
 	const handleLogin = (e) => {
 		e.preventDefault();
@@ -20,19 +27,6 @@ function App() {
 			return;
 		}
 
-		// // Email format validation
-		// const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		// if (!emailRegex.test(email)) {
-		// 	setMessage('Please enter a valid email address.');
-		// 	return;
-		// }
-
-		// Password length validation
-		// if (password.length < 8) {
-		// 	setMessage('Password must be at least 8 characters long.');
-		// 	return;
-		// }
-
 		// Send sanitized data to the backend
 		fetch('http://localhost:4567/login', {
 			method: 'POST',
@@ -41,15 +35,17 @@ function App() {
 				email: email,
 				password: password,
 			}).toString(),
+			credentials: 'include'
 		})
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.success) {
+					localStorage.setItem('token', data.token);
+					localStorage.setItem('userId', data.userId);
 					setMessage('Login successful!');
-          ///call to backend to get user data
-					navigate('/dashboard'); // Redirect to dashboard or your target page
+					navigate('/dashboard');
 				} else {
-					setMessage('Invalid credentials!');
+					setMessage(data.error || 'Invalid credentials!');
 				}
 			})
 			.catch((error) => {
@@ -58,7 +54,9 @@ function App() {
 			});
 	};
 
-	const navigate = useNavigate(); // Hook to navigate between routes
+	const handleForgotPassword = () => {
+		navigate('/reset-password');
+	};
 
 	return (
 		<div>
@@ -66,16 +64,33 @@ function App() {
 			<div className="login-container">
 				<h1>Welcome to Matcha</h1>
 				<form className="login-form" onSubmit={handleLogin}>
-					<input  placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-					<input  placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+					<input 
+						type="email" 
+						placeholder="Email" 
+						value={email} 
+						onChange={(e) => setEmail(e.target.value)} 
+						required
+					/>
+					<input 
+						type="password" 
+						placeholder="Password" 
+						value={password} 
+						onChange={(e) => setPassword(e.target.value)} 
+						required
+					/>
 					<button type="submit">Log In</button>
 				</form>
 				{message && <p className="message">{message}</p>}
 				<p className="create-account-message">
 					Don't have an account?
-				<button className="create-account-button" onClick={() => navigate('/create-user')}>
-					Create an Account
-				</button>
+					<button className="create-account-button" onClick={() => navigate('/create-user')}>
+						Create an Account
+					</button>
+				</p>
+				<p className="forgot-password">
+					<button className="forgot-password-button" onClick={handleForgotPassword}>
+						Forgot Password?
+					</button>
 				</p>
 			</div>
 		</div>
@@ -83,15 +98,44 @@ function App() {
 }
 
 export default function AppWrapper() {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/create-user" element={<CreateUser />} />
-                {/* <Route path="/dashboard" element={<Profile />} />
-                <Route path="/about" element={<About />} />
-               <Route path="/browse" element={<Browse />} /> */}
-            </Routes>
-        </Router>
-    );
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<Login />} />
+				<Route path="/create-user" element={<CreateUser />} />
+				<Route path="/verify-email/:token" element={<VerifyEmail />} />
+				<Route path="/reset-password" element={<ResetPassword />} />
+				<Route path="/dashboard" element={
+					<ProtectedRoute>
+						<Dashboard />
+					</ProtectedRoute>
+				} />
+				<Route path="/profile" element={
+					<ProtectedRoute>
+						<Profile />
+					</ProtectedRoute>
+				} />
+				<Route path="/browse" element={
+					<ProtectedRoute>
+						<Browse />
+					</ProtectedRoute>
+				} />
+				<Route path="/user/:userId" element={
+					<ProtectedRoute>
+						<UserProfile />
+					</ProtectedRoute>
+				} />
+				<Route path="/chat" element={
+					<ProtectedRoute>
+						<Chat />
+					</ProtectedRoute>
+				} />
+				<Route path="/notifications" element={
+					<ProtectedRoute>
+						<Notifications />
+					</ProtectedRoute>
+				} />
+			</Routes>
+		</Router>
+	);
 }

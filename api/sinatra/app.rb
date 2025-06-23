@@ -8,6 +8,10 @@ require './controllers/tags'
 require './controllers/user_tags'
 require './controllers/search'
 require './controllers/websocket'
+require './controllers/profile_view'
+require './controllers/block'
+require './controllers/report'
+require './controllers/notification'
 
 require 'sinatra'
 require 'sinatra/cross_origin'
@@ -27,6 +31,7 @@ before do
   response.headers['Access-Control-Allow-Origin'] = '*'
 end
 
+set :protection, except: :http_origin
 
 get '/' do
   'Hello, Sinatra with MariaDB in Docker!'
